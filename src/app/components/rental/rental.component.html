@@ -1,0 +1,35 @@
+<div class="card mb-3">
+  
+<!-- <img src="https://localhost:44341/images/1e2285d2-5139-4e1f-be36-2edb2ddbca61.jpg" class="rounded mx-auto d-block" alt="..."> -->
+
+  <div class="card-body">
+      <div class="card-body | filterPipe:filterText"  *ngIf= "carDetailDto != undefined">
+      <h5 class="card-text"> Kiralama Özeti</h5>
+      <p class="card-text">Kiralamak istediğiniz tarih aralığı seçiniz.</p>
+      <p class="card-text">{{ carDetailDto.brandName | uppercase}}</p>
+      <p class="card-text">{{ carDetailDto.description }}</p>
+      <p class="card-text">{{ carDetailDto.modelYear }}, {{ carDetailDto.colorName }}</p>
+      <h5 class="card-text">{{ carDetailDto.dailyPrice | vatAdded: 18 | currency:"₺" }} </h5>
+      <div class="input-group mb-3">
+        <form [formGroup]="rentForm">
+        <input formControlName="rentDate" type="date">
+        <input formControlName="returnDate" type="date">
+      </form>
+      </div>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button> -->
+        <button routerLink="/cars/{{carDetailDto.carId}}" type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">close</button>
+        <button type="submit" (click)="createRent()" class="btn btn-primary btn-sm">Ödeme Adımı Geç</button>
+      </div>
+
+      <p class="card-text">
+        <small class="text-muted">Ödeme adımına geçemden tarih aralığı seçmelisiniz.</small>
+      </p>
+    </div>
+  </div>
+</div>
+
+  
+  
+  

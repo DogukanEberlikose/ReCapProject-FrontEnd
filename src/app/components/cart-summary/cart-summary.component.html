@@ -1,0 +1,27 @@
+<!-- <li *ngIf="cartItems.length>0" class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Sepetiniz
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <li *ngFor="let cartItem of cartItems"><a class="dropdown-item"><span class="badge bg-secondary">{{cartItem.quantity}}</span>{{cartItem.car.brandName}}<span (click)="removeFromCart(cartItem.car)" class="badge bg-secondary">Sil</span></a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item">Sepete git</a></li>
+    </ul>
+  </li> -->
+  <div *ngIf="cartItems.length>0" class="card" style="width: 18rem;">
+    <img src="https://localhost:44341/images/1e2285d2-5139-4e1f-be36-2edb2ddbca61.jpg" class="card-img-top" alt="...">
+    <div *ngFor="let cartItem of cartItems" class="card-body | filterPipe:filterText">
+      <h5 class="card-title">{{cartItem.car.brandName}}</h5>
+      <p class="card-text">{{cartItem.quantity}}</p>
+      <p class="card-text">{{cartItem.car.description}}</p>
+      <p class="card-text">{{cartItem.car.modelYear}}</p>
+      <p class="card-text">{{cartItem.car.colorName}}</p>
+      <!-- Auto Filterer -->
+      <span (click)="removeFromCart(cartItem.car)" class="badge bg-secondary">Sil</span>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <h5 class="card-text">{{cartItem.car.dailyPrice|vatAdded:18 | currency}}</h5>
+        <button class="btn btn-primary me-md-2" type="button">Button</button>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,79 @@
+<div class="d-flex justify-content-center">
+<div *ngIf="dataLoaded==false" class="spinner-border text-info" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+ 
+  <div class="col-md-6">
+    <label for="filterText" class="form-label">Ürün ara</label>
+    <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" 
+    placeholder="Arama ifadesi giriniz"> 
+  </div>
+  <div *ngIf="filterText.length>2" class="alert alert-success">
+      {{filterText}} aradınız.
+  </div>
+
+  <div class="row">
+  <div class="col">
+    <select
+      class="form-control mb-3"
+      [(ngModel)]="brandId"
+      style="margin-left: 10px; width: 90%"
+    >
+      <option selected>All Brands</option>
+      <option
+        [value]="brand.brandId"
+        *ngFor="let brand of brands "
+        [selected]="getSelectedBrandId(brand.brandId)"
+      >
+        {{ brand.brandName }}
+      </option>
+    </select>
+  </div>
+  <div class="col">
+    <select
+      class="form-control mb-3"
+      [(ngModel)]="colorId"
+      placeholder="All Colors"
+      style="margin-left: 10px; width: 90%"
+    >
+      <option selected>All Colors</option>
+      <option
+        *ngFor="let color of colors "
+        [value]="color.colorId"
+        [selected]="getSelectedColorId(color.colorId)"
+      >
+        {{ color.colorName }}
+      </option>
+    </select>
+  </div>
+  <div class="col" style="justify-content: flex-end;">
+    <button
+      class="btn"
+      (click)="getFilteredCars(brandId, colorId)"
+      style="width: 100%; background-color: #5cb370; color: white;"
+    >
+      Filter
+    </button>
+  </div>
+</div>  
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <div *ngFor="let car of cars| filterPipe:filterText" class="col">
+        <div  class="card" style="width: 17rem;">
+            <img width="202" height="220" src="https://localhost:44341{{car.imagePath}}"  class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{car.brandName |uppercase}}</h5>
+              <p class="card-text">{{car.description}}</p>
+              <p class="card-text">{{car.modelYear}}</p>
+              <p class="card-text">{{car.colorName}}</p>
+             <div>
+                <h5 class="card-Price">{{car.dailyPrice |vatAdded:18 | currency:"₺" }}</h5>
+                <button routerLink="/cars/{{car.carId}}" class="btn btn-success me-md-2">Detay</button>
+             </div>
+              
+            </div>
+          </div>
+    </div>
+</div> 
+

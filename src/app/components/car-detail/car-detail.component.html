@@ -1,0 +1,48 @@
+<div  class="card mb-3">
+  <div id="carouselExampleControls"
+  style="border-radius: 35px;padding-right: 0px; border: none;margin-top: 37px;margin-right: 0px;border-bottom-right-radius: 0px;border-top-right-radius: 0px;"
+  class="carousel slide " data-bs-ride="carousel">
+  <div class="carousel-inner" style="margin-right: 0px">
+
+    <div class="carousel-item " *ngFor="let car of carImage;  index as i; first as firstImage "
+      [ngClass]="{ active: firstImage }">
+      <img src="https://localhost:44341{{car.imagePath}}" class="d-block w-100" alt="image.imagePath"
+        style="border-radius: 35px;border-bottom-right-radius: 0px;border-top-right-radius: 0px;margin-right: 0px;padding-right: 0px;">
+
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+  <!-- <img *ngFor="let car of carImage"
+    src= "https://localhost:44341{{car.imagePath}}"
+    class="card-img-top"
+    alt="..."
+  /> -->
+
+  <div class="card-body">
+      <div class="card-body | filterPipe:filterText"  *ngIf="car != undefined">
+      <p class="card-text">{{ car.brandName | uppercase}}</p>
+      <p class="card-text">{{ car.description }}</p>
+      <p class="card-text">{{ car.colorName }}</p>
+      <p class="card-text">{{ car.modelYear }}</p>
+      <h5 class="card-text">{{ car.dailyPrice | vatAdded: 18 | currency:"₺" }}</h5>
+      <div class="d-grid gap-2 col-6 mx-auto">
+        <button routerLink="/rental/add/{{car.carId}}" class="btn btn-success">
+          Kirala
+        </button>
+      </div>
+
+      <p class="card-text">
+        <small class="text-muted">Detay görüntülendi</small>
+      </p>
+    </div>
+  </div>
+</div>

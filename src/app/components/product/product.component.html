@@ -4,9 +4,9 @@
   </div>
 </div>
  
-  <div class="col-md-6">
+  <div style="margin-bottom: 20px; margin: top 10px; margin-left: 10px;" class="col-md-6">
     <label for="filterText" class="form-label">Ürün ara</label>
-    <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" 
+    <input style="margin-bottom: 5px;" type="text" [(ngModel)]="filterText" class="form-control" id="filterText" 
     placeholder="Arama ifadesi giriniz"> 
   </div>
   <div *ngIf="filterText.length>2" class="alert alert-success">
